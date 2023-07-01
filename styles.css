@@ -4,7 +4,7 @@ body{
 
 .container {
   margin: 20px auto;
-/*  max-width: 800px;*/
+  max-width: 100vw;
   padding: 20px;
   background-color: #f2f2f2;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -18,7 +18,7 @@ h1 {
 }
 
 table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: #fff;
@@ -64,5 +64,14 @@ button:hover {
 
 #search-button {
   width: 100px;
+}
+
+@media (max-width: 1610px) {
+  /* CSS rules to apply when the viewport width is 768 pixels or less */
+  /* Add your styles here */
+  .container {
+    background-color: white;
+    box-shadow: 0, 0, 0, 0;
+  }
 }
 
