@@ -1,7 +1,13 @@
+function replaceNullWithOne(value) {
+  return value !== null ? value : 1;
+};
+
 document.addEventListener('DOMContentLoaded', function() {
   const searchInput = document.getElementById('search-input');
   const searchButton = document.getElementById('search-button');
   const tableBody = document.getElementById('table-body');
+
+
 
   searchButton.addEventListener('click', function() {
     const searchTerm = searchInput.value.trim().toLowerCase();
@@ -105,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
       row.appendChild(titleDraws);
 
       const sigStrikesLanded = document.createElement('td');
-      sigStrikesLanded.textContent = fighter.CareerStats.SigStrikesLandedPerMinute;
+      sigStrikesLanded.textContent = fighter.CareerStats ? replaceNullWithOne(fighter.CareerStats.SigStrikesLandedPerMinute) : 1;
       row.appendChild(sigStrikesLanded);
 
       tableBody.appendChild(row);
@@ -113,10 +119,11 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function fetchData() {
-    return fetch(`https://api.sportsdata.io/v3/mma/scores/json/Fighters?key=${API_KEY}`s)
+    return fetch(`https://api.sportsdata.io/v3/mma/scores/json/Fighters?key=${API_KEY}`)
       .then(response => response.json())
       .then(data => {
-        const fighters = data;
+        let fighters = data;  
+      console.log(fighters.CareerStats);
         createTable(fighters);
       })
       .catch(error => console.error(error));
